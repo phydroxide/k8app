@@ -5,7 +5,7 @@ Based on https://www.cloudskillsboost.google/focuses/1776?parent=catalog
 
 
 
-# Custom CLI Tools
+## Custom CLI Tools
 
 For BYUI/Ensign Pathways IT 360 I created a docker container that could be used on a student's computer rather than having to rely on Cloud Run or any requirement to install a bunch of tools:
 
@@ -14,6 +14,36 @@ For BYUI/Ensign Pathways IT 360 I created a docker container that could be used 
 ```
 docker run -it --privileged -v /Users/phydroxide/cloudsdk:/home/cloudsdk -v /var/run/docker.sock:/var/run/docker.sock mycli /bin/bash
 ```
+
+## Pre-Built
+
+During week 9 I built and hosted a docker image to assist students in having the same tools as I
+
+```
+Somebody brave try this for me:
+Run:
+ gcloud auth login
+
+Go to the link in your browser, and complete the sign-in prompts.
+Once finished, enter the verification code provided in your browser.
+
+Run:
+gcloud auth configure-docker us-central1-docker.pkg.dev
+
+Run:
+docker pull us-central1-docker.pkg.dev/ensign-421602/ensign-public/ensign-cli:smaller
+
+Run:
+docker run --rm --name ensign-cli -it --privileged  -v /var/run/docker.sock:/var/run/docker.sock us-central1-docker.pkg.dev/ensign-421602/ensign-public/ensign-cli:smaller /bin/bash
+
+
+You're now using the same tools as me - which include:
+gcloud
+kubectl
+helm
+nano
+```
+
 
 ## GCP Setup
 
@@ -76,4 +106,11 @@ gcloud container clusters get-credentials jenkins-cd
 ```
 
 This will use the Google credentials to get the kubernetes credential and save to ~/.kube/config
+
+Once again, you can verify you're connected and authorized by requesting cluster-info
+```
+kubectl cluster-info
+```
+
+### 
 
