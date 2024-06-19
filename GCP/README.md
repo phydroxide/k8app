@@ -17,7 +17,9 @@ docker run -it --privileged -v /Users/phydroxide/cloudsdk:/home/cloudsdk -v /var
 
 ## Pre-Built
 
-During week 9 I built and hosted a docker image to assist students in having the same tools as I
+During week 9 I built and hosted a docker image to assist students in having the same tools as I.
+
+I've configured my artifact registry such that allAuthenticatedUsers have Artifact Registry Read access.
 
 ```
 Somebody brave try this for me:
