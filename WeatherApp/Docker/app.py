@@ -1,5 +1,7 @@
 import requests
 import string
+import geoip2.database
+
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 
@@ -76,3 +78,40 @@ def delete_city( name ):
 
     flash(f'Successfully deleted { city.name }!', 'success')
     return redirect(url_for('index_get'))
+
+@app.route('/me')
+def index_me():
+    print(request.headers)
+    ip='157.201.130.149'
+    if (request.remote_addr):
+      ip=request.remote_addr
+    try:
+      if (request.headers['X-Forwarded-For']):
+        ip=request.headers['X-Forwarded-For']
+    except Exception as e:
+      print("Error {}".format(e))
+
+    weather_data = []
+    
+    city="Rexburg"
+    with geoip2.database.Reader('/python-docker/City.mmdb') as reader:
+      try:
+        response=reader.city(ip)
+        if response.city:
+          if response.city.names:
+            city = response.city.names['en']
+      except Exception as e: 
+        print("Error {}".format(e))
+        
+    r = get_weather_data(city)
+    weather = {
+            'city' : city,
+            'temperature' : r['main']['temp'],
+            'description' : r['weather'][0]['description'],
+            'icon' : r['weather'][0]['icon'],
+            'ip' : '1.1.1.1' 
+    }
+    weather_data.append(weather)
+
+    return render_template('ip.html', weather_data=weather_data)
+
