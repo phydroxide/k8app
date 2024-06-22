@@ -118,4 +118,6 @@ Find site URL to visit by waiting for IP to provision
 kubectl get services
 ``` 
 
-weather-service   LoadBalancer   34.118.237.37   <pending>     80:32469/TCP   27s
+```
+weather-service   LoadBalancer   34.x.y.z   <pending>     80:32469/TCP   27s
+```
