@@ -109,7 +109,7 @@ def index_me():
             'temperature' : r['main']['temp'],
             'description' : r['weather'][0]['description'],
             'icon' : r['weather'][0]['icon'],
-            'ip' : '1.1.1.1' 
+            'ip' : ip 
     }
     weather_data.append(weather)
 
