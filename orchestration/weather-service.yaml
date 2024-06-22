@@ -6,7 +6,7 @@
     externalTrafficPolicy: Cluster 
     type: LoadBalancer 
     selector:
-      app: cowsay
+      app: ensign-weather 
     ports:
       - port: 80
         targetPort: 5555 
