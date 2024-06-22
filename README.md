@@ -28,7 +28,7 @@ Then paste the authentication challenge in the cli.
 
 I found it is easiest to support students by telling them to create a new project for the assignment, and if things go south, we can nuke it and try again.
 ```
-gcloud projects create ensign-jenkins --name ensign-jenkins 
+gcloud projects create ensign --name ensign 
 ```
 
 They'll need to enable the compute API. 
