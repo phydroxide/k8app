@@ -30,4 +30,13 @@ We've learned how to do this! You should be doing it!
 Just as you see here. Providing documentation in a README.md is a best practice for development projects such as this. 
 You should include one.
 
+```
 docker pull us-central1-docker.pkg.dev/ensign-421602/ensign-public/weather:v1
+```
+
+```
+docker run -p 5555:5555 us-central1-docker.pkg.dev/ensign-421602/ensign-public/weather:v1
+```
+
+Docker will host my container on your machine here: http://localhost:5555/
+
