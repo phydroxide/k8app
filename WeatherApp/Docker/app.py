@@ -83,13 +83,13 @@ def delete_city( name ):
 def index_me():
     print(request.headers)
     ip='157.201.130.149'
-    if (request.remote_addr):
-      ip=request.remote_addr
-    try:
-      if (request.headers['X-Forwarded-For']):
-        ip=request.headers['X-Forwarded-For']
-    except Exception as e:
-      print("Error {}".format(e))
+    if (request.environ['REMOTE_ADDR']):
+      ip=request.environ['REMOTE_ADDR']
+    #try:
+    #  if (request.headers['X-Forwarded-For']):
+    #    ip=request.headers['X-Forwarded-For']
+    #except Exception as e:
+    #  print("Error {}".format(e))
 
     weather_data = []
     
@@ -109,7 +109,10 @@ def index_me():
             'temperature' : r['main']['temp'],
             'description' : r['weather'][0]['description'],
             'icon' : r['weather'][0]['icon'],
-            'ip' : ip 
+            'ip' : ip, 
+            'headers' : request.headers,
+            'request' : request,
+            'realip' : request.environ.get('HTTP_X_REAL_IP', request.remote_addr)   
     }
     weather_data.append(weather)
 
