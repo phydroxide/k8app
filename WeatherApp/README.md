@@ -17,6 +17,7 @@ I used a sample application, but made a few modifications:
 * I registered for my own API key and included it in my solution
 * I pre-loaded cities of interest into the sqllite database packaged in my container
 * I created a docker file that is loaded with tools I use to troubleshoot from within the container (This would not be the case for a production container, you'd want to reduce the software footprint as much as possible, but the point is to showcase it is your own.)
+* Just for fun if you visit http://<GOOGLE_LOADBALANCER_IP>/server it'll tell you the weather in the vicinity of the server by looking up the IP in a city database
 
 Students should either write their own application using a sample application as a model, or make their own modifications to a sample application and repackage it to their own artifact registry.
  

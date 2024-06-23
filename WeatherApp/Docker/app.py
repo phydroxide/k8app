@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.config['DEBUG'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////python-docker/weather.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = 'thisisasecret'
+#app.config['SECRET_KEY'] = 'thisisasecret'
 db = SQLAlchemy(app)
 
 
@@ -79,15 +79,12 @@ def delete_city( name ):
     flash(f'Successfully deleted { city.name }!', 'success')
     return redirect(url_for('index_get'))
 
-@app.route('/me')
+@app.route('/server')
 def index_me():
-    print(request.headers)
     ip='157.201.130.149'
-    if (request.remote_addr):
-      ip=request.remote_addr
     try:
-      if (request.headers['X-Forwarded-For']):
-        ip=request.headers['X-Forwarded-For']
+      if (request.headers['Host']):
+        ip=request.headers['Host']
     except Exception as e:
       print("Error {}".format(e))
 
@@ -109,7 +106,7 @@ def index_me():
             'temperature' : r['main']['temp'],
             'description' : r['weather'][0]['description'],
             'icon' : r['weather'][0]['icon'],
-            'ip' : ip 
+            'ip' : ip, 
     }
     weather_data.append(weather)
 
